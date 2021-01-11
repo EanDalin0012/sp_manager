@@ -12,13 +12,6 @@ class HomeScreenContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return  Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-        centerTitle: true,
-        backgroundColor: Colors.purple[900],
-        elevation: 0,
-        leading: new Container(),
-      ),
       body: Column(
           children: <Widget>[
 //          Row(

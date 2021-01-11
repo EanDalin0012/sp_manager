@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sp_manager/share/components/show_modal_sheet/show_modal_sheet_background.dart';
+import 'package:sp_manager/screens/vendor/vendor_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class SheetContainer extends StatefulWidget {
@@ -98,7 +98,7 @@ class _SheetContainerState extends State<SheetContainer> {
             ),
             InkWell(
               onTap: () {
-                print('Vendor Click');
+
               },
               child: Container(
                 width: 120,
@@ -132,7 +132,10 @@ class _SheetContainerState extends State<SheetContainer> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            print('Vendor Click');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => VendorScreen()),
+            );
           },
           child: Container(
             width: 120,

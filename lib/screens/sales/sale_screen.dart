@@ -14,13 +14,6 @@ class _SaleScreenState extends State<SaleScreen> {
   Widget build(BuildContext context) {
     print('Hell sale screen');
     return Scaffold(
-      appBar:  AppBar(
-        title: Text('Sale'),
-        centerTitle: true,
-        backgroundColor: Colors.purple[900],
-        elevation: 0,
-        leading: new Container(),
-      ),
       body: Column(
         children: <Widget>[
           Container(
@@ -53,11 +46,11 @@ class _SaleScreenState extends State<SaleScreen> {
               ],
             ),
           ),
-          SizedBox(height: 10),
           _mainTransactionBody()
       ])
     );
   }
+
   Expanded _mainTransactionBody() {
     return Expanded(
         child: SingleChildScrollView(

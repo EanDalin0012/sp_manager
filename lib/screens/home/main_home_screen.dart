@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:sp_manager/screens/home/home_container.dart';
+import 'package:sp_manager/screens/notification/notification_screen.dart';
 import 'package:sp_manager/screens/sales/sale_screen.dart';
+import 'package:sp_manager/screens/sign_in/signin.dart';
 import 'package:sp_manager/share/components/show_modal_sheet/custom_bottom_sheet.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
@@ -13,6 +15,7 @@ class MainHomeScreen extends StatefulWidget {
 class _MainHomeScreenState extends State<MainHomeScreen> {
 
   int _selectedIndex = 0;
+  String _titleBar = 'Home';
 
   List<GlobalKey<NavigatorState>> _navigatorKeys = [
     GlobalKey<NavigatorState>(),
@@ -71,6 +74,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
       ],
       onTap: (index) {
         setState(() {
+          if(index == 0) {
+            _titleBar = 'Home';
+          } else if (index == 1) {
+            _titleBar = 'Sale';
+          }
           if(index >= 2) {
             _showModelSheet();
           } else {
@@ -108,19 +116,83 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-        !await _navigatorKeys[_selectedIndex].currentState.maybePop();
-
+        final isFirstRouteInCurrentTab = !await _navigatorKeys[_selectedIndex].currentState.maybePop();
         print(
             'isFirstRouteInCurrentTab: ' + isFirstRouteInCurrentTab.toString());
-
         // let system handle back button if we're on the first route
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: Text(_titleBar),
+            centerTitle: true,
+            backgroundColor: Colors.purple[900],
+            elevation: 0,
+            leading: new Container(),
+            actions: <Widget>[
+              Stack(
+                  children: <Widget>[
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NotificationScreen()),
+                        );
+                      },
+                      child: Container(
+                        height: 80,
+                        padding: EdgeInsets.only(
+                          top: 5,
+                          right: 10,
+                          left: 10
+                        ),
+                        child: Icon(Icons.notifications),
+                      ),
+                    ),
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.purple.withOpacity(0.5),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      padding: EdgeInsets.only(
+                        left: 6,
+                        top: 1
+                      ),
+                      margin: EdgeInsets.only(
+                        top: 7,
+                        left: 20
+                      ),
+                      child: Text('2', style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w800)),
+                    ),
+                  ],
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                    );
+                  },
+                  child: Container(
+                      height: 40,
+                      padding: EdgeInsets.only(
+                        top: 7,
+                        right: 5,
+                        left: 5
+                      ),
+                      margin: EdgeInsets.only(
+                      right: 5
+                      ),
+                      child: Icon(Icons.logout),
+                  ),
+                ),
+            ],
+          ),
+          backgroundColor: Colors.white,
           bottomNavigationBar: _bottomNavigationBar(),
-        body: _widgetOptions.elementAt(_selectedIndex),
+          body: _widgetOptions.elementAt(_selectedIndex),
       ),
     );
   }
