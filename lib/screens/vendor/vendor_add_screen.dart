@@ -11,49 +11,46 @@ class VendorAddScreen extends StatefulWidget {
 }
 
 class _VendorAddScreenState extends State<VendorAddScreen> {
-
-  String name;
   @override
   Widget build(BuildContext context) {
-
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: _appBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            color: Color(0xffd9dbdb).withOpacity(0.4),
-            padding: EdgeInsets.only(
-                left: 20,
-                top: 10,
-                right: 20,
-                bottom: 10
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body:  Container(
+        height: size.height,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Vendor Information',
-                  style: TextStyle(
-                    color: primaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-//                Text(
-//                  'All',
-//                  style: TextStyle(
-//                    color: primaryColor,
-//                    fontSize: 18,
-//                    fontWeight: FontWeight.w500,
-//                  ),
-//                ),
-              ],
+                      Container(
+                        color: Color(0xffd9dbdb).withOpacity(0.4),
+                        width: size.width,
+                        padding: EdgeInsets.only(
+                            left: 20,
+                            top: 10,
+                            right: 20,
+                            bottom: 10
+                        ),
+                        child: Text(
+                          'Vendor Information',
+                          style: TextStyle(
+                            color: primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          left: 20,
+                          right: 20
+                        ),
+                        child: _mainBody(),
+                      )
+              ]
             ),
-          ),
-          _mainBody(context)
-        ],
-      )
+        ),
+      ),
     );
   }
 
@@ -85,72 +82,64 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
     );
   }
 
-  SingleChildScrollView _mainBody(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-        padding: EdgeInsets.only(
-          left: 20,
-          right: 20
-        ),
-        physics: ClampingScrollPhysics(),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(height: 25,),
-              InputField(
-                hintText: "Vendor Name",
-                keyboardType: TextInputType.text,
-                onChanged: (value) {
-                  print(value);
-                },
-              ),
-              SizedBox(height: 15),
-              InputField(
-                keyboardType: TextInputType.number,
-                hintText: "Contact",
-                onChanged: (value) {
-                  print(value);
-                },
-              ),
-              SizedBox(height: 15),
-              InputField(
-                keyboardType: TextInputType.emailAddress,
-                hintText: "Email",
-                onChanged: (value) {
-                  print(value);
-                },
-              ),
-              SizedBox(height: 15),
-              InputField(
-                keyboardType: TextInputType.text,
-                hintText: "Address",
-                onChanged: (value) {
-                  print(value);
-                },
-              ),
-              SizedBox(height: 15),
-              InputField(
-                hintText: "Image",
-                onChanged: (value) {
-                  print(value);
-                },
-              ),
-              SizedBox(height: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Button(
-                    text: 'Save',
-                    faIcon:  FaIcon(FontAwesomeIcons.save,size: 20,color: Colors.white),
-                    press: () {
-                      print('log in click');
-                    },
-                  ),
-                ],
-              ),
-            ]
-        )
-    );
+  Column _mainBody() {
+    return  Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(height: 25,),
+                InputField(
+                  hintText: "Vendor Name",
+                  keyboardType: TextInputType.text,
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+                SizedBox(height: 15),
+                InputField(
+                  keyboardType: TextInputType.number,
+                  hintText: "Contact",
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+                SizedBox(height: 15),
+                InputField(
+                  keyboardType: TextInputType.emailAddress,
+                  hintText: "Email",
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+                SizedBox(height: 15),
+                InputField(
+                  keyboardType: TextInputType.text,
+                  hintText: "Address",
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+                SizedBox(height: 15),
+                InputField(
+                  hintText: "Image",
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
+                SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Button(
+                      text: 'Save',
+                      faIcon:  FaIcon(FontAwesomeIcons.save,size: 20,color: Colors.white),
+                      press: () {
+                        print('log in click');
+                      },
+                    ),
+                  ],
+                ),
+              ]
+          );
   }
 }
