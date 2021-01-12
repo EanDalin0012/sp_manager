@@ -15,4 +15,9 @@ class VendorModel {
         VendorModel('Li MaKong', 'PP', '096 65 55 879', 'limakong@gmail.com', 'https://manofmany.com/wp-content/uploads/2019/06/50-Long-Haircuts-Hairstyle-Tips-for-Men-2.jpg')
       ];
     }
+
+    @override
+  String toString() {
+    return 'VendorModel{name: $name, address: $address, contact: $contact, email: $email, photo: $photo}';
+  }
 }

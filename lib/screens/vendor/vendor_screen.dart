@@ -136,7 +136,7 @@ class _VendorScreenState extends State<VendorScreen> {
                     ),
                     trailing: Column(
                       children: <Widget>[
-                        _offsetPopup(),
+                        _offsetPopup(_vendorList[index]),
                       ],
                     )
                   )
@@ -147,13 +147,13 @@ class _VendorScreenState extends State<VendorScreen> {
     );
   }
 
-  Widget _offsetPopup() => PopupMenuButton<int>(
+  Widget _offsetPopup(VendorModel vendorModel) => PopupMenuButton<int>(
     itemBuilder: (context) => [
       PopupMenuItem(
         value: 1,
         child: Row(
           children: <Widget>[
-            FaIcon(FontAwesomeIcons.infoCircle,size: 20,color: Colors.purple[900]),
+            FaIcon(FontAwesomeIcons.infoCircle,size: 20,color: Colors.purple[900].withOpacity(0.7)),
             SizedBox(width: 10,),
             Text(
               "View",
@@ -167,7 +167,7 @@ class _VendorScreenState extends State<VendorScreen> {
         value: 2,
         child: Row(
           children: <Widget>[
-            FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
+            FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900].withOpacity(0.7)),
             SizedBox(width: 10,),
             Text(
               "Edit",
@@ -181,7 +181,7 @@ class _VendorScreenState extends State<VendorScreen> {
           value: 3,
           child: Row(
             children: <Widget>[
-              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
+              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900].withOpacity(0.7)),
               SizedBox(width: 10,),
               Text(
                 "Delete",
@@ -195,7 +195,7 @@ class _VendorScreenState extends State<VendorScreen> {
     icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
     offset: Offset(0, 45),
     onSelected: (value) {
-      print("value:$value");
+      print("value:$value,"+vendorModel.toString());
     },
   );
 
