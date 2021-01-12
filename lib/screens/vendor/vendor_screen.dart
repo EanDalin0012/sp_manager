@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/screens/vendor/vendor_add_screen.dart';
@@ -133,7 +134,11 @@ class _VendorScreenState extends State<VendorScreen> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    trailing:  FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black.withOpacity(0.7))
+                    trailing: Column(
+                      children: <Widget>[
+                        _offsetPopup(),
+                      ],
+                    )
                   )
               )
             ],
@@ -141,4 +146,58 @@ class _VendorScreenState extends State<VendorScreen> {
         )
     );
   }
-}
+
+  Widget _offsetPopup() => PopupMenuButton<int>(
+    itemBuilder: (context) => [
+      PopupMenuItem(
+        value: 1,
+        child: Row(
+          children: <Widget>[
+            FaIcon(FontAwesomeIcons.infoCircle,size: 20,color: Colors.purple[900]),
+            SizedBox(width: 10,),
+            Text(
+              "View",
+              style: TextStyle(
+                  color: Colors.purple[900], fontWeight: FontWeight.w700),
+            ),
+          ],
+        )
+      ),
+      PopupMenuItem(
+        value: 2,
+        child: Row(
+          children: <Widget>[
+            FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
+            SizedBox(width: 10,),
+            Text(
+              "Edit",
+              style: TextStyle(
+                  color: Colors.purple[900], fontWeight: FontWeight.w700),
+            ),
+          ],
+        )
+      ),
+      PopupMenuItem(
+          value: 3,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text(
+                "Delete",
+                style: TextStyle(
+                    color: Colors.purple[900], fontWeight: FontWeight.w700),
+              ),
+            ],
+          )
+      ),
+    ],
+    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
+    offset: Offset(0, 45),
+    onSelected: (value) {
+      print("value:$value");
+    },
+  );
+
+  }
+
