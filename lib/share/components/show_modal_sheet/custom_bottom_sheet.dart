@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sp_manager/screens/customer/customer_add_screen.dart';
+import 'package:sp_manager/screens/customer/customer_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_screen.dart';
-import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class SheetContainer extends StatefulWidget {
   @override
@@ -49,7 +47,7 @@ class _SheetContainerState extends State<SheetContainer> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => CustomerAddScreen()),
+                  MaterialPageRoute(builder: (context) => CustomerScreen()),
                 );
               },
               child: Container(

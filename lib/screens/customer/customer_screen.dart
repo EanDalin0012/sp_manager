@@ -1,46 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sp_manager/model/vendor.dart';
+import 'package:sp_manager/model/customer/customer_model.dart';
+import 'package:sp_manager/screens/customer/customer_add_screen.dart';
+import 'package:sp_manager/screens/customer/customer_edit_screen.dart';
+import 'package:sp_manager/screens/customer/customer_view_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_add_screen.dart';
-import 'package:sp_manager/screens/vendor/vendor_edit_screen.dart';
-import 'package:sp_manager/screens/vendor/vendor_view_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
-class VendorScreen extends StatefulWidget {
+class CustomerScreen extends StatefulWidget {
   @override
-  _VendorScreenState createState() => _VendorScreenState();
+  _CustomerScreenState createState() => _CustomerScreenState();
 }
 
-class _VendorScreenState extends State<VendorScreen> {
-  final _vendorList = VendorModel.data();
+class _CustomerScreenState extends State<CustomerScreen> {
+  final _customerList = CustomerModel.data();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
-          title: Text('Vendor'),
+          title: Text('Customer'),
           backgroundColor: Colors.purple[900],
-//          leading: Container(
-//            padding: EdgeInsets.only(
-//              top: 5
-//            ),
-//            child: Column(
-//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//              children: <Widget>[
-//                IconButton(
-//                  icon: const Icon(Icons.navigate_before, size: 30),
-//                  tooltip: 'Show Snackbar',
-//                  onPressed: () {
-//                    Navigator.push(
-//                      context,
-//                      MaterialPageRoute(builder: (context) => MainHomeScreen()),
-//                    );
-//                  },
-//                ),
-//              ],
-//            ),
-//          )
       ),
       body: Column(
           children: <Widget>[
@@ -56,7 +37,7 @@ class _VendorScreenState extends State<VendorScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    'Vendor List',
+                    'Customer List',
                     style: TextStyle(
                       color: primaryColor,
                       fontSize: 18,
@@ -81,7 +62,7 @@ class _VendorScreenState extends State<VendorScreen> {
             onPressed: (){
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => VendorAddScreen()),
+                MaterialPageRoute(builder: (context) => CustomerAddScreen()),
               );
             },
             tooltip: 'Increment',
@@ -102,7 +83,7 @@ class _VendorScreenState extends State<VendorScreen> {
                   primary: false,
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => Divider(),
-                  itemCount: _vendorList.length,
+                  itemCount: _customerList.length,
                   itemBuilder: (context, index) => ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: Container(
@@ -116,11 +97,11 @@ class _VendorScreenState extends State<VendorScreen> {
                       ),
                       child: Image(
                           fit: BoxFit.cover,
-                          image: NetworkImage(_vendorList[index].photo)
+                          image: NetworkImage(_customerList[index].photo)
                       )
                     ),
                     title: Text(
-                      _vendorList[index].name,
+                      _customerList[index].firstName +''+_customerList[index].lastName,
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 16,
@@ -128,7 +109,7 @@ class _VendorScreenState extends State<VendorScreen> {
                       ),
                     ),
                     subtitle: Text(
-                      'Contact: '+_vendorList[index].contact,
+                      'Contact: '+_customerList[index].contact,
                       style: TextStyle(
                         color: primaryColor.withOpacity(0.8),
                         fontSize: 14,
@@ -137,7 +118,7 @@ class _VendorScreenState extends State<VendorScreen> {
                     ),
                     trailing: Column(
                       children: <Widget>[
-                        _offsetPopup(_vendorList[index]),
+                        _offsetPopup(_customerList[index]),
                       ],
                     )
                   )
@@ -148,7 +129,7 @@ class _VendorScreenState extends State<VendorScreen> {
     );
   }
 
-  Widget _offsetPopup(VendorModel vendorModel) => PopupMenuButton<int>(
+  Widget _offsetPopup(CustomerModel customerModel) => PopupMenuButton<int>(
     itemBuilder: (context) => [
       PopupMenuItem(
         value: 1,
@@ -199,12 +180,12 @@ class _VendorScreenState extends State<VendorScreen> {
       if(value == 1) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => VendorViewScreen(vendorModel)),
+          MaterialPageRoute(builder: (context) => CustomerViewScreen(customerModel)),
         );
       } else if(value == 2) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => VendorEditScreen(vendorModel)),
+          MaterialPageRoute(builder: (context) => CustomerEditScreen(customerModel)),
         );
       }
     },

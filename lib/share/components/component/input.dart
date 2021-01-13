@@ -9,12 +9,14 @@ class InputField extends StatelessWidget {
   final IconData icon;
   final ValueChanged<String> onChanged;
   final TextInputType keyboardType;
+  final TextEditingController textEditingController;
   const InputField({
     Key key,
     this.hintText,
     this.icon,
     this.onChanged,
-    this.keyboardType
+    this.keyboardType,
+    this.textEditingController
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class InputField extends StatelessWidget {
       child: TextField(
         keyboardType: keyboardType,
         onChanged: onChanged,
+        controller: textEditingController,
         cursorColor: kPrimaryColor,
         style: GoogleFonts.merriweather(fontSize: 20, fontWeight: FontWeight.w500),
         decoration: InputDecoration(

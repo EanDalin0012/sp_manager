@@ -61,7 +61,7 @@ class _CustomerAddScreenState extends State<CustomerAddScreen> {
                 bottom: 10
             ),
             child: Text(
-              'Vendor Information',
+              'Customer Information',
               style: TextStyle(
                 color: primaryColor,
                 fontSize: 18,
@@ -98,7 +98,15 @@ class _CustomerAddScreenState extends State<CustomerAddScreen> {
         children: <Widget>[
           SizedBox(height: 20),
           InputField(
-            hintText: "Vendor Name",
+            hintText: "First Name",
+            keyboardType: TextInputType.text,
+            onChanged: (value) {
+              print(value);
+            },
+          ),
+          SizedBox(height: 15),
+          InputField(
+            hintText: "Last Name",
             keyboardType: TextInputType.text,
             onChanged: (value) {
               print(value);
