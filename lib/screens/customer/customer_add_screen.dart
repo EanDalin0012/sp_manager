@@ -4,12 +4,13 @@ import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/components/component/input.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
-class VendorAddScreen extends StatefulWidget {
+class CustomerAddScreen extends StatefulWidget {
   @override
-  _VendorAddScreenState createState() => _VendorAddScreenState();
+  _CustomerAddScreenState createState() => _CustomerAddScreenState();
 }
 
-class _VendorAddScreenState extends State<VendorAddScreen> {
+class _CustomerAddScreenState extends State<CustomerAddScreen> {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -22,7 +23,7 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
   AppBar _appBar(){
     return AppBar(
         centerTitle: true,
-        title: Text('Add New Vendor'),
+        title: Text('Add New Customer'),
         backgroundColor: Colors.purple[900],
 //        leading: Container(
 //          padding: EdgeInsets.only(
@@ -35,10 +36,10 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
 //                icon: const Icon(Icons.navigate_before,size: 30),
 //                tooltip: 'Show Snackbar',
 //                onPressed: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(builder: (context) => VendorScreen()),
-//                  );
+////                  Navigator.push(
+////                    context,
+////                    MaterialPageRoute(builder: (context) => VendorScreen()),
+////                  );
 //                },
 //              ),
 //            ],
@@ -69,21 +70,22 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
             ),
           ),
           Expanded(
-              child: SingleChildScrollView(
-                  child: Container(
-                      height: size.height,
-                      child: Column(
-                          children: <Widget>[
-                            Container(
-                              width: double.infinity,
-                              height: size.height,
-                              padding: EdgeInsets.all(15),
-                              color: Colors.white.withOpacity(0.7),
-                              child: _input(),
-                            )
-                          ]
+            child: SingleChildScrollView(
+                child: Container(
+                  height: size.height,
+    //            padding: EdgeInsets.all(5.0),
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: double.infinity,
+                        height: size.height,
+                        padding: EdgeInsets.all(15),
+                        color: Colors.white.withOpacity(0.7),
+                        child: _input(),
                       )
-                  )
+                    ]
+                )
+              )
               )
           )
         ]
@@ -94,7 +96,7 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
     return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 20,),
+          SizedBox(height: 20),
           InputField(
             hintText: "Vendor Name",
             keyboardType: TextInputType.text,
@@ -149,5 +151,4 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
         ]
     );
   }
-
 }

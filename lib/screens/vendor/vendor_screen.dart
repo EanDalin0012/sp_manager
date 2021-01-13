@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/screens/vendor/vendor_add_screen.dart';
+import 'package:sp_manager/screens/vendor/vendor_edit_screen.dart';
+import 'package:sp_manager/screens/vendor/vendor_view_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
-import 'package:sp_manager/screens/home/main_home_screen.dart';
+
 class VendorScreen extends StatefulWidget {
   @override
   _VendorScreenState createState() => _VendorScreenState();
@@ -20,26 +21,26 @@ class _VendorScreenState extends State<VendorScreen> {
           centerTitle: true,
           title: Text('Vendor'),
           backgroundColor: Colors.purple[900],
-          leading: Container(
-            padding: EdgeInsets.only(
-              top: 5
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.navigate_before, size: 30),
-                  tooltip: 'Show Snackbar',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainHomeScreen()),
-                    );
-                  },
-                ),
-              ],
-            ),
-          )
+//          leading: Container(
+//            padding: EdgeInsets.only(
+//              top: 5
+//            ),
+//            child: Column(
+//              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//              children: <Widget>[
+//                IconButton(
+//                  icon: const Icon(Icons.navigate_before, size: 30),
+//                  tooltip: 'Show Snackbar',
+//                  onPressed: () {
+//                    Navigator.push(
+//                      context,
+//                      MaterialPageRoute(builder: (context) => MainHomeScreen()),
+//                    );
+//                  },
+//                ),
+//              ],
+//            ),
+//          )
       ),
       body: Column(
           children: <Widget>[
@@ -195,7 +196,17 @@ class _VendorScreenState extends State<VendorScreen> {
     icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
     offset: Offset(0, 45),
     onSelected: (value) {
-      print("value:$value,"+vendorModel.toString());
+      if(value == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VendorViewScreen(vendorModel)),
+        );
+      } else if(value == 2) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VendorEditScreen(vendorModel)),
+        );
+      }
     },
   );
 
