@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sp_manager/model/product/product_model.dart';
 import 'package:sp_manager/model/transaction_sales.dart';
@@ -73,7 +74,7 @@ class _SaleScreenState extends State<SaleScreen> {
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
             left: 40,
-            right: 15,
+            right: 0,
             top: 15
           ),
           physics: ClampingScrollPhysics(),
@@ -89,7 +90,7 @@ class _SaleScreenState extends State<SaleScreen> {
                     title: Text(
                       _saleDetailsProductModel[index].transaction_id,
                       style: GoogleFonts.ptSerifCaption(
-                        fontSize: 20,
+                        fontSize: 17,
                         fontWeight: FontWeight.w700,
                         color: Colors.black
                       ),
@@ -103,18 +104,26 @@ class _SaleScreenState extends State<SaleScreen> {
                       ),
                     ),
                     trailing: Container(
-                      height: 50,
-                      color: Colors.red,
-                      child: Text(
-                        _saleDetailsProductModel[index].total.toString(),
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
+                      width: 150,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text(
+                            _saleDetailsProductModel[index].total.toString(),
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          _offsetPopup(_saleDetailsProductModel[index])
+                        ],
                       ),
-                    )
+                    ),
                   )
+              ),
+              Container(
+                height: 50,
               )
             ],
           ),
@@ -184,4 +193,67 @@ class _SaleScreenState extends State<SaleScreen> {
         )
     );
   }
+
+  Widget _offsetPopup(SaleDetailsProductModel _saleDetailsProductModel) => PopupMenuButton<int>(
+    itemBuilder: (context) => [
+      PopupMenuItem(
+          value: 1,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.infoCircle,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text(
+                "View",
+                style: TextStyle(
+                    color: Colors.purple[900], fontWeight: FontWeight.w700),
+              ),
+            ],
+          )
+      ),
+//      PopupMenuItem(
+//          value: 2,
+//          child: Row(
+//            children: <Widget>[
+//              FaIcon(FontAwesomeIcons.edit,size: 20,color: Colors.purple[900]),
+//              SizedBox(width: 10,),
+//              Text(
+//                "Edit",
+//                style: TextStyle(
+//                    color: Colors.purple[900], fontWeight: FontWeight.w700),
+//              ),
+//            ],
+//          )
+//      ),
+      PopupMenuItem(
+          value: 3,
+          child: Row(
+            children: <Widget>[
+              FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
+              SizedBox(width: 10,),
+              Text(
+                "Delete",
+                style: TextStyle(
+                    color: Colors.purple[900], fontWeight: FontWeight.w700),
+              ),
+            ],
+          )
+      ),
+    ],
+    icon: FaIcon(FontAwesomeIcons.ellipsisV,size: 20,color: Colors.black),
+    offset: Offset(0, 40),
+    onSelected: (value) {
+      if(value == 1) {
+//        Navigator.push(
+//          context,
+//          MaterialPageRoute(builder: (context) => VendorViewScreen(vendorModel)),
+//        );
+      } else if(value == 2) {
+//        Navigator.push(
+//          context,
+//          MaterialPageRoute(builder: (context) => VendorEditScreen(vendorModel)),
+//        );
+      }
+    },
+  );
+
 }
