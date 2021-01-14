@@ -14,17 +14,21 @@ class VendorEditScreen extends StatefulWidget {
 }
 
 class _VendorEditScreenState extends State<VendorEditScreen> {
-  var nameController    = new TextEditingController();
-  var addressController = new TextEditingController();
-  var contactController = new TextEditingController();
-  var emailController   = new TextEditingController();
-  var photoController   = new TextEditingController();
+  var name;
+  var address;
+  var contact;
+  var email;
+  var photo;
 
   final VendorModel vendorModel;
 
   _VendorEditScreenState(this.vendorModel) {
-    print("edit vendor screen\n"+vendorModel.toString());
+    name    = vendorModel.name;
+    address = vendorModel.address;
+    contact = vendorModel.contact;
+    email   = vendorModel.email;
   }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -91,7 +95,7 @@ class _VendorEditScreenState extends State<VendorEditScreen> {
           SizedBox(height: 20),
           InputField(
             hintText: "Vendor Name",
-            textEditingController: nameController,
+            value: name,
             keyboardType: TextInputType.text,
             onChanged: (value) {
               print(value);
@@ -101,7 +105,7 @@ class _VendorEditScreenState extends State<VendorEditScreen> {
           InputField(
             keyboardType: TextInputType.number,
             hintText: "Contact",
-            textEditingController: contactController,
+            value: contact,
             onChanged: (value) {
               print(value);
             },
@@ -110,7 +114,7 @@ class _VendorEditScreenState extends State<VendorEditScreen> {
           InputField(
             keyboardType: TextInputType.emailAddress,
             hintText: "Email",
-            textEditingController: emailController,
+            value: email,
             onChanged: (value) {
               print(value);
             },
@@ -119,7 +123,7 @@ class _VendorEditScreenState extends State<VendorEditScreen> {
           InputField(
             keyboardType: TextInputType.text,
             hintText: "Address",
-            textEditingController: addressController,
+            value: address,
             onChanged: (value) {
               print(value);
             },
@@ -127,7 +131,7 @@ class _VendorEditScreenState extends State<VendorEditScreen> {
           SizedBox(height: 15),
           InputField(
             hintText: "Image",
-            textEditingController: photoController,
+            value: photo,
             onChanged: (value) {
               print(value);
             },

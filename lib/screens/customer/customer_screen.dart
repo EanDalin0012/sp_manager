@@ -122,6 +122,9 @@ class _CustomerScreenState extends State<CustomerScreen> {
                       ],
                     )
                   )
+              ),
+              Container(
+                height: 40,
               )
             ],
           ),

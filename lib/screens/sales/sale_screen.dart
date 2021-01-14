@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sp_manager/model/product/product_model.dart';
 import 'package:sp_manager/model/transaction_sales.dart';
+import 'package:sp_manager/screens/sales/sale_add_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class SaleScreen extends StatefulWidget {
@@ -10,6 +13,7 @@ class SaleScreen extends StatefulWidget {
 
 class _SaleScreenState extends State<SaleScreen> {
   final _transactionSales = TransactionSaleModel.data();
+  final _saleDetailsProductModel = SaleDetailsProductModel.data();
   @override
   Widget build(BuildContext context) {
     print('Hell sale screen');
@@ -46,8 +50,75 @@ class _SaleScreenState extends State<SaleScreen> {
               ],
             ),
           ),
-          _mainTransactionBody()
-      ])
+//          _mainTransactionBody()
+          _body()
+      ]),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple[900],
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SaleAddScreen()),
+          );
+        },
+        tooltip: 'Increment',
+        elevation: 5,
+        child: Icon(Icons.add_circle, size: 45,),
+      ),
+    );
+  }
+
+  Expanded _body() {
+    return Expanded(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.only(
+            left: 40,
+            right: 15,
+            top: 15
+          ),
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children: <Widget>[
+              ListView.separated(
+                  primary: false,
+                  shrinkWrap: true,
+                  separatorBuilder: (context, index) => Divider(),
+                  itemCount: _saleDetailsProductModel.length,
+                  itemBuilder: (context, index) => ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      _saleDetailsProductModel[index].transaction_id,
+                      style: GoogleFonts.ptSerifCaption(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black
+                      ),
+                    ),
+                    subtitle: Text(
+                      _saleDetailsProductModel[index].date,
+                      style: TextStyle(
+                        color: primaryColor.withOpacity(0.6),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    trailing: Container(
+                      height: 50,
+                      color: Colors.red,
+                      child: Text(
+                        _saleDetailsProductModel[index].total.toString(),
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  )
+              )
+            ],
+          ),
+        )
     );
   }
 

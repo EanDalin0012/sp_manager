@@ -15,21 +15,21 @@ class CustomerEditScreen extends StatefulWidget {
 }
 
 class _CustomerEditScreenState extends State<CustomerEditScreen> {
-  var firstNameController = new TextEditingController();
-  var lastNameController = new TextEditingController();
-  var contactController = new TextEditingController();
-  var emailController = new TextEditingController();
-  var addressController = new TextEditingController();
-  var photoController = new TextEditingController();
+  var firstName;
+  var lastName;
+  var contact;
+  var email;
+  var address;
+  var photo;
 
   final CustomerModel customerModel;
   _CustomerEditScreenState(this.customerModel) {
-    firstNameController.text = customerModel.firstName;
-    lastNameController.text = customerModel.lastName;
-    contactController.text = customerModel.contact;
-    emailController.text = customerModel.email;
-    addressController.text = customerModel.address;
-    photoController.text = customerModel.photo;
+    firstName = customerModel.firstName;
+    lastName  = customerModel.lastName;
+    contact   = customerModel.contact;
+    email     = customerModel.email;
+    address   = customerModel.address;
+    photo     = customerModel.photo;
 
     print('customer edit screen\n'+customerModel.toString());
   }
@@ -102,7 +102,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           SizedBox(height: 20),
           InputField(
             hintText: "First Name",
-            textEditingController: firstNameController,
+            value: firstName,
             keyboardType: TextInputType.text,
             onChanged: (value) {
               print(value);
@@ -111,7 +111,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           SizedBox(height: 15),
           InputField(
             hintText: "Last Name",
-            textEditingController: lastNameController,
+            value: lastName,
             keyboardType: TextInputType.text,
             onChanged: (value) {
               print(value);
@@ -121,7 +121,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           InputField(
             keyboardType: TextInputType.number,
             hintText: "Contact",
-            textEditingController: contactController,
+            value: contact,
             onChanged: (value) {
               print(value);
             },
@@ -130,7 +130,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           InputField(
             keyboardType: TextInputType.emailAddress,
             hintText: "Email",
-            textEditingController: emailController,
+            value: email,
             onChanged: (value) {
               print(value);
             },
@@ -139,7 +139,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           InputField(
             keyboardType: TextInputType.text,
             hintText: "Address",
-            textEditingController: addressController,
+            value: address,
             onChanged: (value) {
               print(value);
             },
@@ -147,7 +147,7 @@ class _CustomerEditScreenState extends State<CustomerEditScreen> {
           SizedBox(height: 15),
           InputField(
             hintText: "Image",
-            textEditingController: photoController,
+            value: photo,
             onChanged: (value) {
               print(value);
             },

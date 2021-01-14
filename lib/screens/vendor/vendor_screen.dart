@@ -141,6 +141,9 @@ class _VendorScreenState extends State<VendorScreen> {
                       ],
                     )
                   )
+              ),
+              Container(
+                height: 40,
               )
             ],
           ),
