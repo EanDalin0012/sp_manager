@@ -5,6 +5,7 @@ import 'package:sp_manager/model/product/product_model.dart';
 import 'package:sp_manager/model/transaction_sales.dart';
 import 'package:sp_manager/screens/sales/sale_add_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
+import 'package:sp_manager/share/constant/sale_status.dart';
 
 class SaleScreen extends StatefulWidget {
 
@@ -72,8 +73,9 @@ class _SaleScreenState extends State<SaleScreen> {
   Expanded _body() {
     return Expanded(
         child: SingleChildScrollView(
+          primary: true,
           padding: EdgeInsets.only(
-            left: 40,
+            left: 10,
             right: 0,
             top: 15
           ),
@@ -95,16 +97,33 @@ class _SaleScreenState extends State<SaleScreen> {
                         color: Colors.black
                       ),
                     ),
-                    subtitle: Text(
-                      _saleDetailsProductModel[index].date,
-                      style: TextStyle(
-                        color: primaryColor.withOpacity(0.6),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    subtitle: Container(
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            _saleDetailsProductModel[index].date,
+                            style: TextStyle(
+                              color: primaryColor.withOpacity(0.6),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          SizedBox(width: 5,),
+                          status(_saleDetailsProductModel[index].status),
+                          SizedBox(width: 5,),
+                          Text(
+                            _saleDetailsProductModel[index].total.toString(),
+                            style: TextStyle(
+                              color: primaryColor.withOpacity(0.6),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     trailing: Container(
-                      width: 150,
+                      width: 130,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
@@ -171,10 +190,10 @@ class _SaleScreenState extends State<SaleScreen> {
                         ),
                       ),
                       subtitle: Text(
-                        _transactionSales[index].date,
+                        _transactionSales[index].date+ 'paid,'+_transactionSales[index].amount,
                         style: TextStyle(
                           color: primaryColor.withOpacity(0.6),
-                          fontSize: 14,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -191,6 +210,26 @@ class _SaleScreenState extends State<SaleScreen> {
               ],
           ),
         )
+    );
+  }
+
+  Text status(String status) {
+    Color color = Colors.purple[900];
+    String text = "paid";
+    if(status == sale_status.pay_phase) {
+      color = Colors.purple[900];
+      text = "pay phase";
+    } else if (status == sale_status.unpaid) {
+      color = Colors.red;
+      text = "unpaid";
+    }
+    return Text(
+      text,
+      style: TextStyle(
+        color: color,
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+      ),
     );
   }
 
@@ -229,7 +268,7 @@ class _SaleScreenState extends State<SaleScreen> {
           child: Row(
             children: <Widget>[
               FaIcon(FontAwesomeIcons.trash,size: 20,color: Colors.purple[900]),
-              SizedBox(width: 10,),
+              SizedBox(width: 10),
               Text(
                 "Delete",
                 style: TextStyle(
