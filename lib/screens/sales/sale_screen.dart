@@ -104,7 +104,7 @@ class _SaleScreenState extends State<SaleScreen> {
                             _saleDetailsProductModel[index].date,
                             style: TextStyle(
                               color: primaryColor.withOpacity(0.6),
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -115,7 +115,7 @@ class _SaleScreenState extends State<SaleScreen> {
                             _saleDetailsProductModel[index].total.toString(),
                             style: TextStyle(
                               color: primaryColor.withOpacity(0.6),
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -227,8 +227,8 @@ class _SaleScreenState extends State<SaleScreen> {
       text,
       style: TextStyle(
         color: color,
-        fontSize: 15,
-        fontWeight: FontWeight.w500,
+        fontSize: 12,
+        fontWeight: FontWeight.w800,
       ),
     );
   }
