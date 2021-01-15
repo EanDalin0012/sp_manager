@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/screens/customer/customer_screen.dart';
+import 'package:sp_manager/screens/product/product_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_screen.dart';
 
 class SheetContainer extends StatefulWidget {
@@ -164,7 +165,10 @@ class _SheetContainerState extends State<SheetContainer> {
         ),
         InkWell(
           onTap: () {
-            print('Vendor Click');
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProductScreen()),
+            );
           },
           child: Container(
             width: 120,

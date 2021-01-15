@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sp_manager/model/product/product_model.dart';
+import 'package:sp_manager/model/product/sale_detail_product_model.dart';
 import 'package:sp_manager/model/transaction_sales.dart';
 import 'package:sp_manager/screens/sales/sale_add_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
@@ -14,7 +14,7 @@ class SaleScreen extends StatefulWidget {
 }
 
 class _SaleScreenState extends State<SaleScreen> {
-  final _transactionSales = TransactionSaleModel.data();
+
   final _saleDetailsProductModel = SaleDetailsProductModel.data();
   @override
   Widget build(BuildContext context) {
@@ -145,69 +145,6 @@ class _SaleScreenState extends State<SaleScreen> {
                 height: 50,
               )
             ],
-          ),
-        )
-    );
-  }
-
-  Expanded _mainTransactionBody() {
-    return Expanded(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-          physics: ClampingScrollPhysics(),
-          child: Column(
-              children: <Widget>[
-                  ListView.separated(
-                    primary: false,
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => Divider(),
-                    itemCount: _transactionSales.length,
-                    itemBuilder: (context, index) => ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Container(
-                        width: 60,
-                        height: 60,
-                        clipBehavior: Clip.hardEdge,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border:
-                          Border.all(color: primaryColor.withOpacity(0.1)),
-                        ),
-                        child: Image.asset(
-                          _transactionSales[index].logo,
-                          fit: BoxFit.cover,
-                          width: 30,
-                          height: 30,
-                        ),
-                      ),
-                      title: Text(
-                        _transactionSales[index].name,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      subtitle: Text(
-                        _transactionSales[index].date+ 'paid,'+_transactionSales[index].amount,
-                        style: TextStyle(
-                          color: primaryColor.withOpacity(0.6),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      trailing: Text(
-                        _transactionSales[index].amount,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    )
-                  )
-              ],
           ),
         )
     );
