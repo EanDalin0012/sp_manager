@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sp_manager/model/product/product_model.dart';
 import 'package:sp_manager/model/transaction_sales.dart';
 import 'package:sp_manager/screens/product/product_add_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
@@ -10,7 +11,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  final _transactionSales = TransactionSaleModel.data();
+  final _productList = ProductModel.data();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   primary: false,
                   shrinkWrap: true,
                   separatorBuilder: (context, index) => Divider(),
-                  itemCount: _transactionSales.length,
+                  itemCount: _productList.length,
                   itemBuilder: (context, index) => ListTile(
                     contentPadding: EdgeInsets.zero,
                     leading: Container(
@@ -86,15 +87,12 @@ class _ProductScreenState extends State<ProductScreen> {
                         border:
                         Border.all(color: primaryColor.withOpacity(0.1)),
                       ),
-                      child: Image.asset(
-                        _transactionSales[index].logo,
-                        fit: BoxFit.cover,
-                        width: 30,
-                        height: 30,
+                      child: Image(
+                        image: NetworkImage(_productList[index].resourceImageId),
                       ),
                     ),
                     title: Text(
-                      _transactionSales[index].name,
+                      _productList[index].productName,
                       style: TextStyle(
                         color: Colors.black87,
                         fontSize: 16,
@@ -102,14 +100,14 @@ class _ProductScreenState extends State<ProductScreen> {
                       ),
                     ),
                     subtitle: Text(
-                      _transactionSales[index].date,
+                      _productList[index].remark,
                       style: TextStyle(
                         color: primaryColor.withOpacity(0.6),
                         fontSize: 12,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    trailing: _offsetPopup(_transactionSales[index]),
+                    trailing: _offsetPopup(_productList[index]),
                   )
               ),
               Container(
@@ -121,7 +119,7 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  Widget _offsetPopup(TransactionSaleModel _saleDetailsProductModel) => PopupMenuButton<int>(
+  Widget _offsetPopup(ProductModel _product) => PopupMenuButton<int>(
     itemBuilder: (context) => [
       PopupMenuItem(
           value: 1,

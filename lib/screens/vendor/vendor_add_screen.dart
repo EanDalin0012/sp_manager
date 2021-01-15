@@ -24,26 +24,6 @@ class _VendorAddScreenState extends State<VendorAddScreen> {
         centerTitle: true,
         title: Text('Add New Vendor'),
         backgroundColor: Colors.purple[900],
-//        leading: Container(
-//          padding: EdgeInsets.only(
-//              top: 5
-//          ),
-//          child: Column(
-//            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//            children: <Widget>[
-//              IconButton(
-//                icon: const Icon(Icons.navigate_before,size: 30),
-//                tooltip: 'Show Snackbar',
-//                onPressed: () {
-//                  Navigator.push(
-//                    context,
-//                    MaterialPageRoute(builder: (context) => VendorScreen()),
-//                  );
-//                },
-//              ),
-//            ],
-//          ),
-//        )
     );
   }
 
