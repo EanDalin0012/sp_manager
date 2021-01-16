@@ -4,6 +4,7 @@ import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/screens/vendor/vendor_add_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_edit_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_view_screen.dart';
+import 'package:sp_manager/share/components/show_dialog/show_dialog.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class VendorScreen extends StatefulWidget {
@@ -209,9 +210,27 @@ class _VendorScreenState extends State<VendorScreen> {
           context,
           MaterialPageRoute(builder: (context) => VendorEditScreen(vendorModel)),
         );
+      } else if (value == 3) {
+        _showDialog(vendorModel);
       }
     },
   );
+
+  Widget _showDialog(VendorModel _vendorModel) {
+    ShowDialog.showDialogYesNo(
+        buildContext: context,
+        title: Text(_vendorModel.name),
+        content: Text('Do you want to delete vendor : '+_vendorModel.name+'?'),
+        btnRight: 'Yes',
+        onPressedBntRight: () {
+          print('onPressedBntRight');
+        },
+        btnLeft: 'No',
+        onPressedBntLeft: () {
+          print('onPressedBntLeft');
+        }
+    );
+  }
 
   }
 

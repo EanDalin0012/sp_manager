@@ -180,7 +180,7 @@ class _ProductScreenState extends State<ProductScreen> {
          MaterialPageRoute(builder: (context) => ProductEditScreen(_product)),
        );
       } else if(value == 3) {
-        _showDialog1();
+        _showDialog(_product);
       }
     },
   );
@@ -199,72 +199,21 @@ class _ProductScreenState extends State<ProductScreen> {
       child: Icon(Icons.add_circle, size: 45,),
     );
   }
-  Widget _showDialog1() {
+
+  Widget _showDialog(ProductModel _product) {
     ShowDialog.showDialogYesNo(
       buildContext: context,
-      title: Text('tile'),
-      content: Text('context'),
-      onPressed: () {
-        print('Hello');
+      title: Text(_product.productName),
+      content: Text('Do you want to delete product : '+_product.productName+'?'),
+      btnRight: 'Yes',
+      onPressedBntRight: () {
+        print('onPressedBntRight');
+      },
+      btnLeft: 'No',
+      onPressedBntLeft: () {
+        print('onPressedBntLeft');
       }
     );
-
   }
 
-  Widget _showDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          Size size = MediaQuery.of(context).size;
-          return  AlertDialog(
-            title: Text('title'),
-            content: Container(
-              child: Text('context'),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text("OK"),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              FlatButton(
-                child: Text("Cancel"),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
-            ],
-          );
-        }
-    );
-  }
-  
-  Future<void> _showMyDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('AlertDialog Title'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Approve'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
 }

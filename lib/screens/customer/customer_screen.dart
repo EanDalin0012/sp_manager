@@ -5,6 +5,7 @@ import 'package:sp_manager/screens/customer/customer_add_screen.dart';
 import 'package:sp_manager/screens/customer/customer_edit_screen.dart';
 import 'package:sp_manager/screens/customer/customer_view_screen.dart';
 import 'package:sp_manager/screens/vendor/vendor_add_screen.dart';
+import 'package:sp_manager/share/components/show_dialog/show_dialog.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class CustomerScreen extends StatefulWidget {
@@ -190,9 +191,28 @@ class _CustomerScreenState extends State<CustomerScreen> {
           context,
           MaterialPageRoute(builder: (context) => CustomerEditScreen(customerModel)),
         );
+      } else if(value == 3) {
+        _showDialog(customerModel);
       }
     },
   );
+
+  Widget _showDialog(CustomerModel _customerModel) {
+    ShowDialog.showDialogYesNo(
+        buildContext: context,
+        title: Text(_customerModel.firstName+' '+_customerModel.lastName),
+        content: Text('Do you want to delete customer : '+_customerModel.firstName+' '+_customerModel.lastName+'?'),
+        btnRight: 'Yes',
+        onPressedBntRight: () {
+          print('onPressedBntRight');
+        },
+        btnLeft: 'No',
+        onPressedBntLeft: () {
+          print('onPressedBntLeft');
+        }
+    );
+  }
+
 
   }
 
