@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sp_manager/model/product/product_model.dart';
 import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/components/component/input.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class ProductEditScreen extends StatefulWidget {
+
+  final ProductModel _productModel;
+  ProductEditScreen(this._productModel);
+
   @override
-  _ProductEditScreenState createState() => _ProductEditScreenState();
+  _ProductEditScreenState createState() => _ProductEditScreenState(_productModel);
 }
 
 class _ProductEditScreenState extends State<ProductEditScreen> {
@@ -15,6 +20,13 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
   var productName;
   var remark;
   var image;
+
+  final ProductModel _productModel;
+  _ProductEditScreenState(this._productModel){
+    productName = _productModel.productName;
+    remark = _productModel.remark;
+    image = _productModel.resourceImageId;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +97,7 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
           SizedBox(height: 20,),
           InputField(
             hintText: "Product Name",
+            value: productName,
             keyboardType: TextInputType.text,
             onChanged: (value) {
               productName = value;
@@ -93,6 +106,7 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
           SizedBox(height: 15),
           InputField(
             keyboardType: TextInputType.number,
+            value: remark,
             hintText: "remark",
             onChanged: (value) {
               remark = value;
@@ -101,6 +115,7 @@ class _ProductEditScreenState extends State<ProductEditScreen> {
           SizedBox(height: 15),
           InputField(
             hintText: "Image",
+            value: image,
             onChanged: (value) {
               image = value;
             },

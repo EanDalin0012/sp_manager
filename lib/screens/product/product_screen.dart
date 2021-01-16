@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/product/product_model.dart';
-import 'package:sp_manager/model/transaction_sales.dart';
 import 'package:sp_manager/screens/product/product_add_screen.dart';
+import 'package:sp_manager/screens/product/product_edit_screen.dart';
+import 'package:sp_manager/screens/product/product_view_screen.dart';
+import 'package:sp_manager/share/components/show_dialog/show_dialog.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -168,15 +170,17 @@ class _ProductScreenState extends State<ProductScreen> {
     offset: Offset(0, 40),
     onSelected: (value) {
       if(value == 1) {
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => VendorViewScreen(vendorModel)),
-//        );
+       Navigator.push(
+         context,
+         MaterialPageRoute(builder: (context) => ProductViewScreen(_product)),
+       );
       } else if(value == 2) {
-//        Navigator.push(
-//          context,
-//          MaterialPageRoute(builder: (context) => VendorEditScreen(vendorModel)),
-//        );
+       Navigator.push(
+         context,
+         MaterialPageRoute(builder: (context) => ProductEditScreen(_product)),
+       );
+      } else if(value == 3) {
+        _showDialog1();
       }
     },
   );
@@ -193,6 +197,74 @@ class _ProductScreenState extends State<ProductScreen> {
       tooltip: 'Increment',
       elevation: 5,
       child: Icon(Icons.add_circle, size: 45,),
+    );
+  }
+  Widget _showDialog1() {
+    ShowDialog.showDialogYesNo(
+      buildContext: context,
+      title: Text('tile'),
+      content: Text('context'),
+      onPressed: () {
+        print('Hello');
+      }
+    );
+
+  }
+
+  Widget _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          Size size = MediaQuery.of(context).size;
+          return  AlertDialog(
+            title: Text('title'),
+            content: Container(
+              child: Text('context'),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              FlatButton(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            ],
+          );
+        }
+    );
+  }
+  
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('AlertDialog Title'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('This is a demo alert dialog.'),
+                Text('Would you like to approve of this message?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Approve'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
