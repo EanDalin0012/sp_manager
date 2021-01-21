@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sp_manager/screens/home/main_home_screen.dart';
 import 'package:sp_manager/screens/sign_in/component/background.dart';
-import 'file:///D:/flutter/sp_manager/lib/share/components/auth/rounded_button.dart';
-import 'file:///D:/flutter/sp_manager/lib/share/components/auth/rounded_input_field.dart';
-import 'file:///D:/flutter/sp_manager/lib/share/components/auth/rounded_password_field.dart';
+import 'package:sp_manager/share/components/auth/rounded_button.dart';
+import 'package:sp_manager/share/components/auth/rounded_input_field.dart';
+import 'package:sp_manager/share/components/auth/rounded_password_field.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class Body extends StatelessWidget {
