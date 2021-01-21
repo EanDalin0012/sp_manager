@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sp_manager/model/product/sale_detail_product_model.dart';
-import 'package:sp_manager/model/transaction_sales.dart';
 import 'package:sp_manager/screens/sales/sale_add_screen.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 import 'package:sp_manager/share/constant/sale_status.dart';
@@ -109,8 +108,6 @@ class _SaleScreenState extends State<SaleScreen> {
                             ),
                           ),
                           SizedBox(width: 5,),
-                          status(_saleDetailsProductModel[index].status),
-                          SizedBox(width: 5,),
                           Text(
                             _saleDetailsProductModel[index].total.toString(),
                             style: TextStyle(
@@ -127,15 +124,34 @@ class _SaleScreenState extends State<SaleScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Text(
-                            _saleDetailsProductModel[index].total.toString(),
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w900,
-                            ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    _saleDetailsProductModel[index].payPhaseAmount.toString(),
+                                    style: TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  status(_saleDetailsProductModel[index].status)
+                                ],
+                              ),
+                            ],
                           ),
-                          _offsetPopup(_saleDetailsProductModel[index])
+                          Column(
+                            children: <Widget>[
+                              _offsetPopup(_saleDetailsProductModel[index]),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),

@@ -16,6 +16,10 @@ class _SheetContainerState extends State<SheetContainer> {
   double _iconSize = 35;
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double w = (size.width / 3) ;
+    double h = w - 20;
+    print('w:$w,h:$h');
     return Container(
       color: Color(0xFF737373),
       child: Container(
@@ -31,16 +35,17 @@ class _SheetContainerState extends State<SheetContainer> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 drawerHandler(),
-                item1(),
+                item1(w,h),
                 SizedBox(height: 20,),
-                item0(),
+                item0(w, h),
               ]
           ),
         )
       ),
     );
   }
-  item0() {
+
+  item0(double w, double h) {
     return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
@@ -52,8 +57,8 @@ class _SheetContainerState extends State<SheetContainer> {
                 );
               },
               child: Container(
-                width: 120,
-                height: 90,
+                width: w,
+                height: h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -78,8 +83,8 @@ class _SheetContainerState extends State<SheetContainer> {
                 print('Vendor Click');
               },
               child: Container(
-                width: 120,
-                height: 90,
+                width: w,
+                height: h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -104,8 +109,8 @@ class _SheetContainerState extends State<SheetContainer> {
 
               },
               child: Container(
-                width: 120,
-                height: 90,
+                width: w,
+                height: h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -129,7 +134,7 @@ class _SheetContainerState extends State<SheetContainer> {
         );
   }
 
-  item1() {
+  item1(double w, double h) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
@@ -141,8 +146,8 @@ class _SheetContainerState extends State<SheetContainer> {
             );
           },
           child: Container(
-            width: 120,
-            height: 90,
+            width: w,
+            height: h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,8 +176,8 @@ class _SheetContainerState extends State<SheetContainer> {
             );
           },
           child: Container(
-            width: 120,
-            height: 90,
+            width: w,
+            height: h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -197,8 +202,8 @@ class _SheetContainerState extends State<SheetContainer> {
             print('Vendor Click');
           },
           child: Container(
-            width: 120,
-            height: 90,
+            width: w,
+            height: h,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -236,59 +241,6 @@ class _SheetContainerState extends State<SheetContainer> {
   }
 
 }
-
-class SheetContainer1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      anchor: 0.3,
-      slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            height: 500,
-            width: double.maxFinite,
-            color: Colors.red,
-          ),
-        )
-      ],
-    );
-  }
-}
-
-
-class CustomBottomSheet extends StatefulWidget {
-  @override
-  _CustomBottomSheetState createState() => _CustomBottomSheetState();
-}
-
-class _CustomBottomSheetState extends State<CustomBottomSheet> {
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return Container(
-        color: Color(0xFF737373),
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Image.asset('asset/images/main_top.png'),
-              width: size.width * 0.1,
-            ),
-            Positioned(
-              bottom: 0,
-              right: 0,
-              child: Image.asset('asset/images/login_bottom.png'),
-              width: size.width * 0.2,
-            ),
-          ],
-        ),
-    );
-  }
-}
-
-
 
 
 

@@ -34,7 +34,7 @@ class HomeScreenContainer extends StatelessWidget {
   Expanded _mainBody() {
     return Expanded(
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
         physics: ClampingScrollPhysics(),
         child: Column(
           children: <Widget>[
