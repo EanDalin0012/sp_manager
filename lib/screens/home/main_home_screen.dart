@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/screens/home/home_container.dart';
 import 'package:sp_manager/screens/notification/notification_screen.dart';
 import 'package:sp_manager/screens/sales/sale_screen.dart';
 import 'package:sp_manager/screens/sign_in/signin.dart';
+import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/components/show_modal_sheet/custom_bottom_sheet.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
@@ -91,11 +93,11 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
 
   Container _showModelSheet() {
     var orientation = MediaQuery.of(context).orientation;
-    double height = MediaQuery.of(context).copyWith().size.height * 0.4;
-    double height1 = MediaQuery.of(context).copyWith().size.height;
-    if( (height1/1.5) < 395) {
-      height = height1/1.8;
-    }
+    double height = (MediaQuery.of(context).copyWith().size.height / 2.5);
+    // double height1 = MediaQuery.of(context).copyWith().size.height;
+    // if( (height1/1.5) < 395) {
+    //   height = height1/1.8;
+    // }
     setState(() {
       if(orientation != Orientation.portrait){
         height = MediaQuery.of(context).copyWith().size.height * 0.67;

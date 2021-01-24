@@ -10,21 +10,23 @@ class SheetContainer extends StatefulWidget {
 }
 
 class _SheetContainerState extends State<SheetContainer> {
-  var colorContain = Color(0xffd9dbdb).withOpacity(0.4);
+  var colorContain = Color(0xffd9dbdb).withOpacity(0.8);
   Color _textColor= Colors.purple[900];
   Color _iconColor = Colors.purple[900];
-  double _iconSize = 35;
+  double _iconSize = 25;
+  double wContainer = 60;
+  double hContainer = 50;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    double w = (size.width / 3) ;
+    double w = (size.width / 3) - 25;
     double h = w - 20;
+
     print('w:$w,h:$h');
     return Container(
       color: Color(0xFF737373),
       child: Container(
-        padding: EdgeInsets.only(top: 15),
-        height: MediaQuery.of(context).size.height,
+        padding: EdgeInsets.only(top: 10),
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -64,8 +66,8 @@ class _SheetContainerState extends State<SheetContainer> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      width: 70,
-                      height: 60,
+                      width: wContainer,
+                      height: hContainer,
                       decoration: BoxDecoration(
                           color: colorContain,
                           borderRadius: BorderRadius.all(Radius.circular(7))
@@ -90,8 +92,8 @@ class _SheetContainerState extends State<SheetContainer> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      width: 70,
-                      height: 60,
+                      width: wContainer,
+                      height: hContainer,
                       decoration: BoxDecoration(
                           color: colorContain,
                           borderRadius: BorderRadius.all(Radius.circular(7))
@@ -116,13 +118,13 @@ class _SheetContainerState extends State<SheetContainer> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      width: 70,
-                      height: 60,
+                      width: wContainer,
+                      height: hContainer,
                       decoration: BoxDecoration(
                         color: colorContain,
                         borderRadius: BorderRadius.all(Radius.circular(7))
                       ),
-                      child: Center(child: FaIcon(FontAwesomeIcons.poll,size: 40,color: _iconColor)),
+                      child: Center(child: FaIcon(FontAwesomeIcons.poll,size: _iconSize + 7,color: _iconColor)),
                     ),
                     SizedBox(height: 5,),
                     Text('Report',style: TextStyle(fontWeight: FontWeight.w900, color: Colors.purple[900])),
@@ -153,8 +155,8 @@ class _SheetContainerState extends State<SheetContainer> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 70,
-                  height: 60,
+                  width: wContainer,
+                  height: hContainer,
                   decoration: BoxDecoration(
                       color: colorContain,
                       borderRadius: BorderRadius.all(Radius.circular(7)),
@@ -183,8 +185,8 @@ class _SheetContainerState extends State<SheetContainer> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 70,
-                  height: 60,
+                  width: wContainer,
+                  height: hContainer,
                   decoration: BoxDecoration(
                       color: colorContain,
                       borderRadius: BorderRadius.all(Radius.circular(7))
@@ -209,8 +211,8 @@ class _SheetContainerState extends State<SheetContainer> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  width: 70,
-                  height: 60,
+                  width: wContainer,
+                  height: hContainer,
                   decoration: BoxDecoration(
                       color: colorContain,
                       borderRadius: BorderRadius.all(Radius.circular(7))
@@ -231,7 +233,7 @@ class _SheetContainerState extends State<SheetContainer> {
   drawerHandler() {
     return Container(
       margin: EdgeInsets.only(bottom: 25),
-      height: 3,
+      height: 5,
       width: 60,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:sp_manager/screens/components/components_screen.dart';
+import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
 class HomeScreenContainer extends StatelessWidget {
@@ -28,6 +30,18 @@ class HomeScreenContainer extends StatelessWidget {
             _mainBody(),
           ],
         ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.purple[900],
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ComponentsScreen()),
+          );
+        },
+        tooltip: 'Increment',
+        elevation: 5,
+        child: Icon(Icons.add_circle, size: 45,),
+      ),
     );
   }
 

@@ -28,9 +28,9 @@ class InputField extends StatelessWidget {
         onChanged: onChanged,
         controller: valueController,
         cursorColor: kPrimaryColor,
-        style: GoogleFonts.merriweather(fontSize: 20, fontWeight: FontWeight.w500),
+        style: GoogleFonts.merriweather(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black87),
         decoration: InputDecoration(
-          hintStyle: GoogleFonts.merriweather(fontSize: 20, fontWeight: FontWeight.w500),
+          hintStyle: GoogleFonts.merriweather(fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black38),
           hintText: hintText,
           border: InputBorder.none,
         ),

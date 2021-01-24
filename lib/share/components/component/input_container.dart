@@ -10,12 +10,13 @@ class InputContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    print('size: $size');
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 1),
       width: size.width,
       decoration: BoxDecoration(
-        color: Color(0xffd9dbdb).withOpacity(0.4),
-        borderRadius: BorderRadius.circular(30),
+        color: Colors.blueGrey[50],
+        borderRadius: BorderRadius.circular(28),
       ),
       child: child,
     );

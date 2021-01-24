@@ -1,18 +1,16 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:sp_manager/share/components/component/button.dart';
+import 'package:sp_manager/share/components/component/Count.dart';
 import 'package:sp_manager/share/components/component/input.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
-class SaleAddScreen extends StatefulWidget {
+class ComponentsScreen extends StatefulWidget {
   @override
-  _SaleAddScreenState createState() => _SaleAddScreenState();
+  _ComponentsScreenState createState() => _ComponentsScreenState();
 }
 
-class _SaleAddScreenState extends State<SaleAddScreen> {
+class _ComponentsScreenState extends State<ComponentsScreen> {
+  int count = 0;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +23,7 @@ class _SaleAddScreenState extends State<SaleAddScreen> {
   AppBar _appBar(){
     return AppBar(
       centerTitle: true,
-      title: Text('Add New Sale'),
+      title: Text('Components'),
       backgroundColor: Colors.purple[900],
     );
   }
@@ -62,8 +60,8 @@ class _SaleAddScreenState extends State<SaleAddScreen> {
                               height: size.height,
                               padding: EdgeInsets.all(15),
                               color: Colors.white.withOpacity(0.7),
-                              child: _input(),
-                            )
+                              child: _input()
+                            ),
                           ]
                       )
                   )
@@ -79,58 +77,26 @@ class _SaleAddScreenState extends State<SaleAddScreen> {
         children: <Widget>[
           SizedBox(height: 20,),
           InputField(
-            hintText: "Vendor Name",
+            hintText: "Input",
             keyboardType: TextInputType.text,
             onChanged: (value) {
-              print(value);
             },
           ),
-          SizedBox(height: 15),
-          InputField(
-            keyboardType: TextInputType.number,
-            hintText: "Contact",
-            onChanged: (value) {
-              print(value);
-            },
-          ),
-          SizedBox(height: 15),
-          InputField(
-            keyboardType: TextInputType.emailAddress,
-            hintText: "Email",
-            onChanged: (value) {
-              print(value);
-            },
-          ),
-          SizedBox(height: 15),
-          InputField(
-            keyboardType: TextInputType.text,
-            hintText: "Address",
-            onChanged: (value) {
-              print(value);
-            },
-          ),
-          SizedBox(height: 15),
-          InputField(
-            hintText: "Image",
-            onChanged: (value) {
-              print(value);
-            },
-          ),
-          SizedBox(height: 25),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Button(
-                text: 'Save',
-                faIcon:  FaIcon(FontAwesomeIcons.save,size: 20,color: Colors.white),
-                press: () {
-                  print('log in click');
-                },
-              ),
-            ],
-          ),
+          SizedBox(height: 20,),
+          _dropDownBtn(),
         ]
     );
   }
 
+  Container _dropDownBtn() {
+    return Container(
+      child: Count(
+        count: count,
+        onCountChange: (int val) {
+          print(val);
+          setState(() => count += val);
+        },
+      ),
+    );
+  }
 }
