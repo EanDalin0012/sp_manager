@@ -17,7 +17,7 @@ class VendorModel {
     }
 
     @override
-  String toString() {
-    return 'VendorModel{name: $name, address: $address, contact: $contact, email: $email, photo: $photo}';
-  }
+    String toString() {
+      return 'VendorModel{name: $name, address: $address, contact: $contact, email: $email, photo: $photo}';
+    }
 }

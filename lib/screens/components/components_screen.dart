@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sp_manager/model/dropdown_button_model/dropdown_button_model.dart';
+import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/share/components/component/Count.dart';
+import 'package:sp_manager/share/components/component/dropdown_btn.dart';
+import 'package:sp_manager/share/components/component/color_picker.dart';
 import 'package:sp_manager/share/components/component/input.dart';
 import 'package:sp_manager/share/constant/constantcolor.dart';
 
@@ -10,7 +14,9 @@ class ComponentsScreen extends StatefulWidget {
 
 class _ComponentsScreenState extends State<ComponentsScreen> {
   int count = 0;
-
+  Object dropDownValue;
+  Color selectedColor = Colors.grey;
+  var vItems = DropdownButtonModel.data();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -83,18 +89,47 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             },
           ),
           SizedBox(height: 20,),
+          _count(),
+          SizedBox(height: 20,),
           _dropDownBtn(),
+          SizedBox(height: 20,),
+          Container(
+            color: selectedColor,
+            height: 20.0,
+          ),
+          ColorPicker(
+            onColorSelect: (Color color) {
+              setState(() {
+                selectedColor = color;
+              });
+            },
+          )
+
         ]
     );
   }
 
-  Container _dropDownBtn() {
+  Container _count() {
     return Container(
       child: Count(
         count: count,
         onCountChange: (int val) {
           print(val);
           setState(() => count += val);
+        },
+      ),
+    );
+  }
+  Container _dropDownBtn() {
+    return Container(
+      child: DropdownBtn(
+        hint: 'select items',
+        items: vItems,
+        value: dropDownValue,
+        onChanged: (val) {
+          print('val:'+val.toString());
+          VendorModel v = val.object;
+          print('v:'+v.toString());
         },
       ),
     );
