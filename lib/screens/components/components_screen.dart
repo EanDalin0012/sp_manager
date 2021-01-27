@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_manager/model/dropdown_button_model/dropdown_button_model.dart';
 import 'package:sp_manager/model/vendor.dart';
@@ -17,12 +18,13 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   Object dropDownValue;
   Color selectedColor = Colors.grey;
   var vItems = DropdownButtonModel.data();
+  Size size = null;
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+     size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: _appBar(),
-      body: _gridView(),
+      body: _body(size),
     );
   }
 
@@ -66,7 +68,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                               height: size.height,
                               padding: EdgeInsets.all(15),
                               color: Colors.white.withOpacity(0.7),
-                              child: _input()
+                              child: _column()
                             ),
                           ]
                       )
@@ -76,69 +78,52 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
         ]
     );
   }
-  GridView _gridView() {
-    return GridView.count(
-      primary: false,
-      padding: const EdgeInsets.all(10),
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 1,
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(8),
-            height: 30,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.blueAccent)
-            ),
-            child: Row(
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.all(8),
-                  child: const Text("He'd have you all unravel at the"),
-                  color: Colors.teal[100],
-                ),
-              ],
-            ),
-          ),
 
-        ]
-    );
-  }
-
-  Column _input() {
+  Column _column() {
     return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 20,),
-          InputField(
-            hintText: "Input",
-            keyboardType: TextInputType.text,
-            onChanged: (value) {
-            },
-          ),
-          SizedBox(height: 20,),
+          SizedBox(height: 20),
+          input(),
           _count(),
-          SizedBox(height: 20,),
+          SizedBox(height: 5),
           _dropDownBtn(),
+          SizedBox(height: 20,),
+          _button(),
           SizedBox(height: 20,),
           Container(
             color: selectedColor,
             height: 20.0,
           ),
-          ColorPicker(
-            onColorSelect: (Color color) {
-              setState(() {
-                selectedColor = color;
-              });
-            },
-          )
-
+          _colorPicker(),
+          _switchButton(),
+          _checkBox(),
+          _uploadImage(),
+          _card()
         ]
+    );
+  }
+  Container input() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: InputField(
+        hintText: "Input",
+        keyboardType: TextInputType.text,
+        onChanged: (value) {
+        },
+      ),
     );
   }
 
   Container _count() {
     return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
       child: Count(
         count: count,
         onCountChange: (int val) {
@@ -148,8 +133,13 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       ),
     );
   }
+
   Container _dropDownBtn() {
     return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
       child: DropdownBtn(
         hint: 'select items',
         items: vItems,
@@ -160,6 +150,77 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
           print('v:'+v.toString());
         },
       ),
+    );
+  }
+
+  Container _colorPicker() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: ColorPicker(
+        onColorSelect: (Color color) {
+          setState(() {
+            selectedColor = color;
+          });
+        },
+      ),
+    );
+  }
+
+  Container _switchButton() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: Text('Switch Button'),
+    );
+  }
+
+  Container _checkBox() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: Text('Check Box'),
+    );
+  }
+
+  Container _uploadImage() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: Text('Upload image'),
+    );
+  }
+
+  Container _card() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: Text('Card'),
+    );
+  }
+
+  Container _button() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      width: size.width,
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: Text('Button'),
     );
   }
 }
