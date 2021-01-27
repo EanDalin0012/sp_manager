@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/dropdown_button_model/dropdown_button_model.dart';
 import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/share/components/component/Count.dart';
+import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/components/component/dropdown_btn.dart';
 import 'package:sp_manager/share/components/component/color_picker.dart';
 import 'package:sp_manager/share/components/component/input.dart';
@@ -216,11 +218,17 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   Container _button() {
     return Container(
       padding: EdgeInsets.only(bottom: 5),
-      width: size.width,
+      width: 120,
       decoration: BoxDecoration(
           border: Border(bottom: BorderSide(color: Colors.blue))
       ),
-      child: Text('Button'),
+      child: Button(
+        text: 'Save',
+        faIcon:  FaIcon(FontAwesomeIcons.save,size: 20,color: Colors.white),
+        press: () {
+          print('log in click');
+        },
+      ),
     );
   }
 }
