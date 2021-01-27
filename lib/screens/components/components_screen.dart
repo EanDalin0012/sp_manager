@@ -22,7 +22,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: _appBar(),
-      body: _body(size),
+      body: _gridView(),
     );
   }
 
@@ -73,6 +73,34 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                   )
               )
           )
+        ]
+    );
+  }
+  GridView _gridView() {
+    return GridView.count(
+      primary: false,
+      padding: const EdgeInsets.all(10),
+      crossAxisSpacing: 10,
+      mainAxisSpacing: 10,
+      crossAxisCount: 1,
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.all(8),
+            height: 30,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.blueAccent)
+            ),
+            child: Row(
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: const Text("He'd have you all unravel at the"),
+                  color: Colors.teal[100],
+                ),
+              ],
+            ),
+          ),
+
         ]
     );
   }
