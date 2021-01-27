@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/dropdown_button_model/dropdown_button_model.dart';
-import 'package:sp_manager/model/vendor.dart';
 import 'package:sp_manager/share/components/component/Count.dart';
 import 'package:sp_manager/share/components/component/button.dart';
 import 'package:sp_manager/share/components/component/dropdown_btn.dart';
@@ -20,6 +19,16 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   Object dropDownValue;
   Color selectedColor = Colors.grey;
   var vItems = DropdownButtonModel.data();
+
+  List dropDownList = [
+    {'name': 'Item 1', 'value': 'individual'},
+    {'name': 'Item 2', 'value': 'company'},
+    {'name': 'Item 3', 'value': 'company'},
+    {'name': 'Item 4', 'value': 'individual'},
+    {'name': 'Item 5', 'value': 'company'},
+    {'name': 'Item 6', 'value': 'company'}
+  ];
+
   Size size = null;
   @override
   Widget build(BuildContext context) {
@@ -144,12 +153,11 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       ),
       child: DropdownBtn(
         hint: 'select items',
-        items: vItems,
+        itemsKey: 'name',
+        items: dropDownList,
         value: dropDownValue,
         onChanged: (val) {
           print('val:'+val.toString());
-          VendorModel v = val.object;
-          print('v:'+v.toString());
         },
       ),
     );
