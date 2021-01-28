@@ -16,7 +16,7 @@ class ComponentsScreen extends StatefulWidget {
 
 class _ComponentsScreenState extends State<ComponentsScreen> {
   int count = 0;
-  Object dropDownValue;
+
   Color selectedColor = Colors.grey;
   var vItems = DropdownButtonModel.data();
 
@@ -28,11 +28,22 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
     {'name': 'Item 5', 'value': 'company'},
     {'name': 'Item 6', 'value': 'company'}
   ];
+  Object dropDownValue;
 
+  List dropDownListed = [
+    {'name': 'Item 1', 'value': 'individual'},
+    {'name': 'Item 2', 'value': 'company'},
+    {'name': 'Item 3', 'value': 'company'},
+    {'name': 'Item 4', 'value': 'individual'},
+    {'name': 'Item 5', 'value': 'company'},
+    {'name': 'Item 6', 'value': 'company'}
+  ];
+  Object dropDownListedValue;
   Size size = null;
   @override
   Widget build(BuildContext context) {
      size = MediaQuery.of(context).size;
+     dropDownListedValue = dropDownListed[0];
     return Scaffold(
       appBar: _appBar(),
       body: _body(size),
@@ -155,8 +166,10 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       child: DropdownBtn(
         hint: 'select items',
         itemsKey: 'name',
+        selectedIndex: dropDownValue,
         items: dropDownList,
         onChanged: (val) {
+          dropDownValue = val;
           print('val:'+val.toString());
         },
       ),
@@ -172,9 +185,10 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       child: DropdownBtn(
         hint: 'select items',
         itemsKey: 'name',
-        selectedIndex: 1,
-        items: dropDownList,
+        selectedIndex: dropDownListedValue,
+        items: dropDownListed,
         onChanged: (val) {
+          dropDownListedValue = val;
           print('val:'+val.toString());
         },
       ),
