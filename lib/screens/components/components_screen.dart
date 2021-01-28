@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sp_manager/model/dropdown_button_model/dropdown_button_model.dart';
 import 'package:sp_manager/share/components/component/Count.dart';
@@ -49,6 +50,12 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       body: _body(size),
     );
   }
+  bool status = false;
+  bool _value1 = false;
+  bool _value06 = false;
+  bool _value07 = false;
+  bool _value11 = true;
+  bool _value12 = false;
 
   AppBar _appBar(){
     return AppBar(
@@ -114,12 +121,14 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
           SizedBox(height: 20,),
           _button(),
           SizedBox(height: 20,),
+          _switch(),
+          _switch2(),
+          SizedBox(height: 20,),
           Container(
             color: selectedColor,
             height: 20.0,
           ),
           _colorPicker(),
-          _switchButton(),
           _checkBox(),
           _uploadImage(),
           _card()
@@ -211,17 +220,6 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
     );
   }
 
-  Container _switchButton() {
-    return Container(
-      padding: EdgeInsets.only(bottom: 5),
-      width: size.width,
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: Colors.blue))
-      ),
-      child: Text('Switch Button'),
-    );
-  }
-
   Container _checkBox() {
     return Container(
       padding: EdgeInsets.only(bottom: 5),
@@ -271,4 +269,45 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
       ),
     );
   }
+
+  Container _switch() {
+    return Container(
+      child: AdvancedSwitch(
+        value: _value1,
+        onChanged: (value) => setState(() {
+          _value1 = value;
+        }),
+      ),
+
+    );
+  }
+
+  Row _switch2() {
+    return Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: <Widget>[
+        AdvancedSwitch(
+          width: 58,
+          height: 30,
+          value: _value11,
+          borderRadius: BorderRadius.circular(20),
+          onChanged: (value) => setState(() {
+            _value11 = value;
+          }),
+        ),
+        AdvancedSwitch(
+          width: 112,
+          height: 56,
+          value: _value12,
+          borderRadius: BorderRadius.circular(29),
+          onChanged: (value) => setState(() {
+            _value12 = value;
+          }),
+        ),
+
+      ],
+    );
+  }
+
 }
