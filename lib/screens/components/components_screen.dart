@@ -99,6 +99,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
           _count(),
           SizedBox(height: 5),
           _dropDownBtn(),
+          _dropDownBtnSelected(),
           SizedBox(height: 20,),
           _button(),
           SizedBox(height: 20,),
@@ -155,7 +156,24 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
         hint: 'select items',
         itemsKey: 'name',
         items: dropDownList,
-        value: dropDownValue,
+        onChanged: (val) {
+          print('val:'+val.toString());
+        },
+      ),
+    );
+  }
+
+  Container _dropDownBtnSelected() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 5),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: Colors.blue))
+      ),
+      child: DropdownBtn(
+        hint: 'select items',
+        itemsKey: 'name',
+        selectedIndex: 1,
+        items: dropDownList,
         onChanged: (val) {
           print('val:'+val.toString());
         },
